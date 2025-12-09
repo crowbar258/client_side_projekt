@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>MealPrep – Verze B (homepage)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="page-container">
+            <nav class="navbar">
+                <a href="index1.html" class="navbar-brand">MealPrep</a>
+
+                <div class="navbar-links">
+                    <a href="index1.html">Domů</a>
+                    <a href="plany.html">Plány</a>
+                    <a href="recepty.html">Recepty</a>
+                    <a href="kontakt.html">Kontakt</a>
+                    <a href="muj-profil.html">Můj profil</a>
+                    <a href="index2.html">Verze B</a>
+                </div>
+
+                <div class="navbar-actions">
+                    <!-- viditelné jen pro přihlášené (ukáže JS) -->
+                    <a href="moje-recepty.html"
+                       id="nav-my-recipes"
+                       class="button button-outline"
+                       style="display:none;">
+                        Moje recepty
+                    </a>
+
+                    <a href="muj-plan.html"
+                       id="nav-my-plan"
+                       class="button button-outline"
+                       style="display:none;">
+                        Můj plán
+                    </a>
+
+                    <!-- přihlášení/registrace pro nepřihlášené -->
+                    <button class="button button-outline" id="open-register-modal">Registrace</button>
+                    <button class="button button-primary" id="open-login-modal">Přihlášení</button>
+
+                    <!-- odhlášení pro přihlášené -->
+                    <button class="button button-outline"
+                            id="logout-button"
+                            style="display:none;">
+                        Odhlásit se
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <!-- 3 karty -->
+        <section class="homepage-b-hero">
+            <div class="page-container">
+                <div class="section-header">
+                    <h1>Plánujte svá jídla snadno a rychle</h1>
+                    <p>
+                        MealPrep vám pomůže mít přehled v tom, co budete jíst.
+                        Vytvoříte si jídelní plán, najdete recepty a získáte nákupní seznam na celý týden.
+                    </p>
+                </div>
+
+                <div class="homepage-b-feature-grid">
+                    <article class="feature-card">
+                        <h3>Jídelní plány</h3>
+                        <p>
+                            Vybírejte z hotových plánů nebo si vytvořte vlastní
+                            podle vašich cílů a preferencí.
+                        </p>
+                        <a href="plany.html" class="plan-card-link">Learn more →</a>
+                    </article>
+
+                    <article class="feature-card">
+                        <h3>Recepty</h3>
+                        <p>
+                            Inspirujte se databází receptů s nutričními hodnotami,
+                            které snadno zařadíte do svých plánů.
+                        </p>
+                        <a href="recepty.html" class="plan-card-link">Learn more →</a>
+                    </article>
+
+                    <article class="feature-card">
+                        <h3>Nákupní seznam</h3>
+                        <p>
+                            Nechte si automaticky vygenerovat nákupní seznam
+                            podle vybraného týdenního plánu.
+                        </p>
+                        <a href="plany.html" class="plan-card-link">Learn more →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- BENEFITY -->
+        <section class="homepage-b-benefits">
+            <div class="page-container">
+
+                <div class="benefit-row">
+                    <div>
+                        <h2>Perfektní na hubnutí!</h2>
+                        <p>
+                            Vytvořte si plán s nižším kalorickým příjmem, který vám pomůže
+                            hubnout postupně a udržitelně. MealPrep hlídá počet porcí,
+                            rozložení jídel během dne i základní nutriční hodnoty.
+                        </p>
+                        <a href="plany.html" class="button button-primary">Learn more →</a>
+                    </div>
+
+                    <div class="benefit-image-wrapper">
+                        <div class="mp-image-box">
+                            <img src="jidelnicek4.jpg"
+                                 alt="Jídelníček pro hubnutí"
+                                 class="mp-image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benefit-row reverse">
+                    <div class="benefit-image-wrapper">
+                        <div class="mp-image-box">
+                            <img src="jidelnicek1.jpg"
+                                 alt="Jídelníček pro diabetiky"
+                                 class="mp-image">
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2>Diabetik? Naše plány vám poradí</h2>
+                        <p>
+                            Využijte speciální jídelní plány se zaměřením na stabilní hladinu
+                            cukru v krvi. Díky přehledu o jídelníčku je snazší dodržovat
+                            doporučení lékaře i dietního plánu.
+                        </p>
+                        <a href="plany.html" class="button button-outline">Learn more →</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="page-container footer-content">
+            <div>Studentský projekt – MealPrep</div>
+            <div class="footer-links">
+                <a href="index2.html">Domů</a>
+                <a href="kontakt.html">Kontakt</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODÁLNÍ OKNO – Přihlášení -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-window">
+            <div class="modal-title-row">
+                <h2>Přihlášení</h2>
+                <button class="modal-close-button" id="close-login-modal">&times;</button>
+            </div>
+            <p class="modal-description">
+                Přihlašte se do svého MealPrep účtu a pokračujte v plánování jídelníčku.
+            </p>
+            <form id="login-form">
+                <div class="modal-form-group">
+                    <label for="login-email">E-mail</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="login-password">Heslo</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="button button-outline" id="cancel-login">Zrušit</button>
+                    <button type="submit" class="button button-primary">Přihlásit se</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODÁLNÍ OKNO – Registrace -->
+    <div class="modal-overlay" id="register-modal">
+        <div class="modal-window">
+            <div class="modal-title-row">
+                <h2>Registrace</h2>
+                <button class="modal-close-button" id="close-register-modal">&times;</button>
+            </div>
+            <p class="modal-description">
+                Vytvořte si účet MealPrep a ukládejte si své jídelní plány i oblíbené recepty.
+            </p>
+            <form id="register-form">
+                <div class="modal-form-group">
+                    <label for="register-email">E-mail</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="register-nickname">Přezdívka</label>
+                    <input type="text" id="register-nickname" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="register-password">Heslo</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="register-password-confirm">Heslo znovu</label>
+                    <input type="password" id="register-password-confirm" required>
+                </div>
+
+                <div class="modal-checkbox-row">
+                    <input type="checkbox" id="register-terms" required>
+                    <label for="register-terms">Přijímám smluvní podmínky</label>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="button button-outline" id="cancel-register">Zrušit</button>
+                    <button type="submit" class="button button-primary">Zaregistrovat se</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODÁL – Úprava ingrediencí -->
+    <div class="modal-overlay" id="ingredients-modal">
+        <div class="modal-window ingredients-window">
+            <div class="modal-title-row">
+                <h2>Upravit ingredience</h2>
+                <button class="modal-close-button" id="close-ingredients-modal">&times;</button>
+            </div>
+
+            <div id="ingredients-form-container">
+
+                <!-- Dynamicky generované ingredience -->
+                <div id="ingredients-edit-list"></div>
+
+                <!-- Přidat novou ingredienci -->
+                <div class="profile-form-group" style="margin-top:16px;">
+                    <label for="add-ingredient-select">Přidat ingredienci</label>
+                    <select id="add-ingredient-select" class="profile-input">
+                        <option value="">Vyberte ingredienci…</option>
+                    </select>
+                </div>
+
+                <button id="save-ingredients" class="button button-primary" style="margin-top:18px;">
+                    Uložit
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ODKAZ NA JAVASCRIPT -->
+    <script src="modals.js"></script>
+</body>
+</html>
+

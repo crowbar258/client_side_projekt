@@ -1,0 +1,494 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Tvorba plánu – MealPrep</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- HLAVIČKA -->
+    <header>
+        <div class="page-container">
+            <nav class="navbar">
+                <a href="index1.html" class="navbar-brand">MealPrep</a>
+
+                <div class="navbar-links">
+                    <a href="index1.html">Domů</a>
+                    <a href="plany.html">Plány</a>
+                    <a href="recepty.html">Recepty</a>
+                    <a href="kontakt.html">Kontakt</a>
+                    <a href="muj-profil.html">Můj profil</a>
+                    <a href="index2.html">Verze B</a>
+                </div>
+
+                <div class="navbar-actions">
+                    <!-- viditelné jen pro přihlášené (ukáže JS) -->
+                    <a href="moje-recepty.html"
+                       id="nav-my-recipes"
+                       class="button button-outline"
+                       style="display:none;">
+                        Moje recepty
+                    </a>
+
+                    <a href="muj-plan.html"
+                       id="nav-my-plan"
+                       class="button button-outline"
+                       style="display:none;">
+                        Můj plán
+                    </a>
+
+                    <!-- přihlášení/registrace pro nepřihlášené -->
+                    <button class="button button-outline" id="open-register-modal">Registrace</button>
+                    <button class="button button-primary" id="open-login-modal">Přihlášení</button>
+
+                    <!-- odhlášení pro přihlášené -->
+                    <button class="button button-outline"
+                            id="logout-button"
+                            style="display:none;">
+                        Odhlásit se
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- OBSAH -->
+    <main class="main-content">
+        <div class="page-container">
+            <section class="section-block">
+                <h1>Tvorba plánu</h1>
+                <p class="section-subtitle">
+                    Rozhraní pro sestavení týdenního jídelního plánu. Zatím jde jen o ukázku – 
+                    data se nikam neukládají (mock).
+                </p>
+
+                <!-- FORMULÁŘ + OBRÁZEK -->
+                <div class="create-page-layout">
+                    <!-- FORMULÁŘ VLEVO -->
+                    <form class="profile-form" action="#" method="post" style="width:100%; max-width:520px;">
+                        <div class="profile-form-group">
+                            <label for="plan-name">Název plánu</label>
+                            <input type="text" id="plan-name" class="profile-input"
+                                   placeholder="Např. Můj první plán">
+                        </div>
+
+                        <div class="profile-form-group">
+                            <label for="plan-difficulty">Komplexita (1–5)</label>
+                            <input type="number" id="plan-difficulty" class="profile-input"
+                                   min="1" max="5" value="3">
+                        </div>
+
+                        <div class="profile-form-group">
+                            <label for="plan-suitable-for">Vhodné pro</label>
+                            <input type="text" id="plan-suitable-for" class="profile-input"
+                                   placeholder="Např. diabetiky, hubnutí apod.">
+                        </div>
+
+                        <div class="profile-form-group">
+                            <label for="plan-description">Popis</label>
+                            <textarea id="plan-description" rows="4"
+                                      class="profile-input"
+                                      placeholder="Stručně popište, k čemu je plán určený…"></textarea>
+                        </div>
+                    </form>
+
+                    <!-- OBRÁZEK VPRAVO -->
+                    <aside>
+                        <h3>Nahrajte obrázek</h3>
+                        <div class="upload-box">
+                            Vložit obrázek.
+                        </div>
+                        <input type="file" id="plan-image" class="profile-input" style="margin-top:12px;">
+                    </aside>
+                </div>
+
+                <!-- ODDĚLENÍ OD TABULKY -->
+                <hr style="margin:32px 0; border:none; border-top:1px solid #e5e7eb;">
+
+                <!-- TABULKA S PROHOZENÝMI ŘÁDKY/SLOUPCI -->
+                <h2>Rozvržení týdne</h2>
+                <p style="margin-bottom:12px; font-size:0.9rem;">
+                    Dny jsou v horním řádku, jednotlivé chody po řádcích. Po rozkliknutí 
+                    každého políčka se nahoře zobrazí šedé „Vyhledat recept“, pod ním pak 
+                    seznam jídel.
+                </p>
+
+                <table class="mealplan-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Pondělí</th>
+                            <th>Úterý</th>
+                            <th>Středa</th>
+                            <th>Čtvrtek</th>
+                            <th>Pátek</th>
+                            <th>Sobota</th>
+                            <th>Neděle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- SNÍDANĚ -->
+                        <tr>
+                            <th>Snídaně</th>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Ovesná kaše s ovocem</option>
+                                    <option>Jogurt s ořechy</option>
+                                    <option>Smoothie bowl s banánem</option>
+                                    <option>Vaječná omeleta se špenátem</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Smoothie bowl s banánem</option>
+                                    <option>Ovesná kaše s ovocem</option>
+                                    <option>Jogurt s müsli</option>
+                                    <option>Chia pudink</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Vaječná omeleta se špenátem</option>
+                                    <option>Jogurt s ovocem</option>
+                                    <option>Chia pudink</option>
+                                    <option>Ovesná kaše s ovocem</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Jogurt s ořechy</option>
+                                    <option>Ovesná kaše s ovocem</option>
+                                    <option>Smoothie bowl</option>
+                                    <option>Jogurt s müsli</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Ovesná kaše s ořechy</option>
+                                    <option>Jogurt s ovocem</option>
+                                    <option>Chia pudink</option>
+                                    <option>Smoothie bowl</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Jogurt s müsli</option>
+                                    <option>Ovesná kaše s ovocem</option>
+                                    <option>Smoothie bowl s banánem</option>
+                                    <option>Jogurt s ovocem</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Palačinky z ovesných vloček</option>
+                                    <option>Jogurt s ovocem</option>
+                                    <option>Chia pudink</option>
+                                    <option>Ovesná kaše s ovocem</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <!-- SVAČINA 1 -->
+                        <tr>
+                            <th>Svačina 1</th>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Proteinový jogurt s ořechy</option>
+                                    <option>Ovoce dle chuti</option>
+                                    <option>Mrkev s hummusem</option>
+                                    <option>Tvaroh s medem</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Ovoce dle chuti</option>
+                                    <option>Proteinový jogurt s ořechy</option>
+                                    <option>Ořechy a semínka</option>
+                                    <option>Smoothie</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Mrkev s hummusem</option>
+                                    <option>Ovoce dle chuti</option>
+                                    <option>Tvaroh s medem</option>
+                                    <option>Smoothie</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Tvaroh s medem</option>
+                                    <option>Ovoce dle chuti</option>
+                                    <option>Ořechy a semínka</option>
+                                    <option>Proteinový jogurt s ořechy</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Jablko s arašídovým máslem</option>
+                                    <option>Ovoce dle chuti</option>
+                                    <option>Mrkev s hummusem</option>
+                                    <option>Tvaroh s medem</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Ořechy a semínka</option>
+                                    <option>Ovoce dle chuti</option>
+                                    <option>Proteinový jogurt s ořechy</option>
+                                    <option>Smoothie</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Smoothie</option>
+                                    <option>Ovoce dle chuti</option>
+                                    <option>Mrkev s hummusem</option>
+                                    <option>Tvaroh s medem</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <!-- OBĚD -->
+                        <tr>
+                            <th>Oběd</th>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Kuřecí salát s quinoou</option>
+                                    <option>Cizrnový salát s fetou</option>
+                                    <option>Pečené batáty s fazolemi</option>
+                                    <option>Lososový salát</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Cizrnový salát s fetou</option>
+                                    <option>Těstovinový salát</option>
+                                    <option>Bowl s lososem</option>
+                                    <option>Pečené batáty s fazolemi</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Pečené batáty s fazolemi</option>
+                                    <option>Kuřecí salát s quinoou</option>
+                                    <option>Lososový salát</option>
+                                    <option>Těstovinový salát</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Lososový salát</option>
+                                    <option>Cizrnový salát s fetou</option>
+                                    <option>Bowl s lososem</option>
+                                    <option>Kuřecí salát s quinoou</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Těstovinový salát</option>
+                                    <option>Pečené batáty s fazolemi</option>
+                                    <option>Kuřecí salát s quinoou</option>
+                                    <option>Lososový salát</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Bowl s lososem</option>
+                                    <option>Lososový salát</option>
+                                    <option>Kuřecí salát s quinoou</option>
+                                    <option>Cizrnový salát s fetou</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Pečené kuře se zeleninou</option>
+                                    <option>Těstovinový salát</option>
+                                    <option>Pečené batáty s fazolemi</option>
+                                    <option>Kuřecí salát s quinoou</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <!-- SVAČINA 2 -->
+                        <tr>
+                            <th>Svačina 2</th>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Ovoce dle chuti</option>
+                                    <option>Tvaroh s medem</option>
+                                    <option>Ořechy a semínka</option>
+                                    <option>Smoothie</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Mrkev s hummusem</option>
+                                    <option>Ovoce dle chuti</option>
+                                    <option>Proteinový jogurt s ořechy</option>
+                                    <option>Smoothie</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Ořechy a semínka</option>
+                                    <option>Ovoce dle chuti</option>
+                                    <option>Tvaroh s medem</option>
+                                    <option>Proteinový jogurt s ořechy</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Smoothie</option>
+                                    <option>Ovoce dle chuti</option>
+                                    <option>Mrkev s hummusem</option>
+                                    <option>Tvaroh s medem</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Jablko s arašídovým máslem</option>
+                                    <option>Ovoce dle chuti</option>
+                                    <option>Tvaroh s medem</option>
+                                    <option>Ořechy a semínka</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Ovoce dle chuti</option>
+                                    <option>Mrkev s hummusem</option>
+                                    <option>Proteinový jogurt s ořechy</option>
+                                    <option>Smoothie</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Tvaroh s medem</option>
+                                    <option>Ovoce dle chuti</option>
+                                    <option>Ořechy a semínka</option>
+                                    <option>Smoothie</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <!-- VEČEŘE -->
+                        <tr>
+                            <th>Večeře</th>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Pečený losos se zeleninou</option>
+                                    <option>Pečené tofu s rýží</option>
+                                    <option>Lehký zeleninový salát</option>
+                                    <option>Lehký salát s mozzarellou</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Krůtí maso s rýží</option>
+                                    <option>Lehký zeleninový salát</option>
+                                    <option>Pečené tofu s rýží</option>
+                                    <option>Hovězí maso se zeleninou</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Špagety z cukety s pestem</option>
+                                    <option>Pečené tofu s rýží</option>
+                                    <option>Lehký salát s mozzarellou</option>
+                                    <option>Lehký zeleninový salát</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Kuřecí stir-fry se zeleninou</option>
+                                    <option>Pečené tofu s rýží</option>
+                                    <option>Lehký zeleninový salát</option>
+                                    <option>Lehký salát s mozzarellou</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Pečené tofu s rýží</option>
+                                    <option>Hovězí maso se zeleninou</option>
+                                    <option>Lehký zeleninový salát</option>
+                                    <option>Lehký salát s mozzarellou</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Hovězí maso se zeleninou</option>
+                                    <option>Pečené tofu s rýží</option>
+                                    <option>Lehký zeleninový salát</option>
+                                    <option>Lehký salát s mozzarellou</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="profile-input">
+                                    <option disabled class="select-placeholder">Vyhledat recept…</option>
+                                    <option selected>Lehký salát s mozzarellou</option>
+                                    <option>Špagety z cukety s pestem</option>
+                                    <option>Lehký zeleninový salát</option>
+                                    <option>Pečené tofu s rýží</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button class="button button-primary" style="margin-top:16px;">
+                    Uložit plán
+                </button>
+            </section>
+        </div>
+    </main>
+
+    <!-- PATIČKA -->
+    <footer class="site-footer">
+        <div class="page-container footer-content">
+            <div>Studentský projekt – MealPrep</div>
+            <div class="footer-links">
+                <a href="index1.html">Domů</a>
+                <a href="kontakt.html">Kontakt</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="modals.js"></script>
+</body>
+</html>

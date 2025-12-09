@@ -1,0 +1,434 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Můj profil – MealPrep</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="page-container">
+            <nav class="navbar">
+                <a href="index1.html" class="navbar-brand">MealPrep</a>
+
+                <div class="navbar-links">
+                    <a href="index1.html">Domů</a>
+                    <a href="plany.html">Plány</a>
+                    <a href="recepty.html">Recepty</a>
+                    <a href="kontakt.html">Kontakt</a>
+                    <a href="muj-profil.html">Můj profil</a>
+                    <a href="index2.html">Verze B</a>
+                </div>
+
+                <div class="navbar-actions">
+                    <!-- viditelné jen pro přihlášené (ukáže JS) -->
+                    <a href="moje-recepty.html"
+                       id="nav-my-recipes"
+                       class="button button-outline"
+                       style="display:none;">
+                        Moje recepty
+                    </a>
+
+                    <a href="muj-plan.html"
+                       id="nav-my-plan"
+                       class="button button-outline"
+                       style="display:none;">
+                        Můj plán
+                    </a>
+
+                    <!-- přihlášení/registrace pro nepřihlášené -->
+                    <button class="button button-outline" id="open-register-modal">Registrace</button>
+                    <button class="button button-primary" id="open-login-modal">Přihlášení</button>
+
+                    <!-- odhlášení pro přihlášené -->
+                    <button class="button button-outline"
+                            id="logout-button"
+                            style="display:none;">
+                        Odhlásit se
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="section-block">
+            <div class="page-container">
+
+                <!-- hlavička stránky + akční tlačítka vpravo -->
+                <div class="profile-header-row">
+                    <h1 class="profile-title">Můj profil</h1>
+                    <div class="profile-top-buttons">
+                        <a href="admin.html" class="button button-outline">Admin page</a>
+                        <!-- <a href="recepty.html" class="button button-outline">Moje recepty</a> -->
+                        <!-- <a href="jidelnicek.html" class="button button-primary">Můj plán</a> -->
+                    </div>
+    </div>
+
+    <!-- hlavní dvousloupcový layout -->
+                        <div class="profile-layout">
+                            <!-- LEVÝ SLOUPEC – profil a změna hesla -->
+                            <div>
+                                <h2 class="profile-section-title">Můj profil</h2>
+
+                                <div class="profile-form-group">
+                                    <label for="profile-nickname">Přezdívka</label>
+                                    <input type="text"
+                                           id="profile-nickname"
+                                           class="profile-input"
+                                           placeholder="Moje přezdívka">
+                                </div>
+
+                                <div class="profile-form-group">
+                                    <label for="profile-email">E-mail</label>
+                                    <input type="email"
+                                           id="profile-email"
+                                           class="profile-input"
+                                           placeholder="uzivatel@example.com">
+                                </div>
+
+                                <h3 style="margin:16px 0 8px;">Změna hesla:</h3>
+
+                                <div class="profile-form-group">
+                                    <label for="old-password">Staré heslo</label>
+                                    <input type="password"
+                                           id="old-password"
+                                           class="profile-input">
+                                </div>
+
+                                <div class="profile-form-group">
+                                    <label for="new-password">Nové heslo</label>
+                                    <input type="password"
+                                           id="new-password"
+                                           class="profile-input">
+                                </div>
+
+                                <div class="profile-actions">
+                                    <button class="button button-primary">Vytvořit plán</button>
+                                    <button class="button button-outline">Vytvořit recept</button>
+                                </div>
+                            </div>
+
+                            <!-- STŘED – dělicí čára -->
+                            <div class="profile-divider"></div>
+
+                            <!-- PRAVÝ SLOUPEC – nákupní seznam -->
+                            <div>
+                                <h2 class="shopping-section-title">Nákupní seznam</h2>
+                                <p class="shopping-subtitle">
+                                    Vyberte jídelní plán a podívejte se, které ingredience máte doma
+                                    a co je potřeba dokoupit. Seznam si můžete upravit podle aktuální zásoby.
+                                </p>
+
+                                <!-- výběr plánu -->
+                                <div class="shopping-plan-select">
+                                    <label for="plan-select">Zvolený plán:</label>
+                                    <select id="plan-select">
+                                        <option value="plan1">Plán 1 – Základní redukce</option>
+                                        <option value="plan2">Plán 2 – Aktivní život</option>
+                                        <option value="plan3">Plán 3 – Vegetariánský</option>
+                                    </select>
+                                </div>
+
+                                <!-- Vaše ingredience – checklist -->
+                                <div class="profile-form-group">
+                                    <label>Vaše ingredience</label>
+                                    <div id="pantry-checklist" class="shopping-checklist">
+                                        <!-- checkboxy doplní JavaScript -->
+                                    </div>
+                                </div>
+
+                                <!-- tlačítko Upravit – otevře modál -->
+                                <div class="shopping-update-row">
+                                    <button id="edit-ingredients" class="button button-primary">
+                                        Upravit
+                                    </button>
+                                </div>
+
+                                <!-- Potřeba koupit – checklist -->
+                                <div class="profile-form-group">
+                                    <label>Potřeba koupit</label>
+                                    <div id="shopping-checklist" class="shopping-checklist">
+                                        <!-- checkboxy doplní JavaScript -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="page-container footer-content">
+            <div>Studentský projekt – MealPrep</div>
+            <div class="footer-links">
+                <a href="index1.html">Domů</a>
+                <a href="kontakt.html">Kontakt</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODÁLNÍ OKNO – Přihlášení -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-window">
+            <div class="modal-title-row">
+                <h2>Přihlášení</h2>
+                <button class="modal-close-button" id="close-login-modal">&times;</button>
+            </div>
+            <p class="modal-description">
+                Přihlašte se do svého MealPrep účtu a pokračujte v plánování jídelníčku.
+            </p>
+            <form id="login-form">
+                <div class="modal-form-group">
+                    <label for="login-email">E-mail</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="login-password">Heslo</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="button button-outline" id="cancel-login">Zrušit</button>
+                    <button type="submit" class="button button-primary">Přihlásit se</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODÁLNÍ OKNO – Registrace -->
+    <div class="modal-overlay" id="register-modal">
+        <div class="modal-window">
+            <div class="modal-title-row">
+                <h2>Registrace</h2>
+                <button class="modal-close-button" id="close-register-modal">&times;</button>
+            </div>
+            <p class="modal-description">
+                Vytvořte si účet MealPrep a ukládejte si své jídelní plány i oblíbené recepty.
+            </p>
+            <form id="register-form">
+                <div class="modal-form-group">
+                    <label for="register-email">E-mail</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="register-nickname">Přezdívka</label>
+                    <input type="text" id="register-nickname" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="register-password">Heslo</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="register-password-confirm">Heslo znovu</label>
+                    <input type="password" id="register-password-confirm" required>
+                </div>
+                <div class="modal-checkbox-row">
+                    <input type="checkbox" id="register-terms" required>
+                    <label for="register-terms">Přijímám smluvní podmínky</label>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="button button-outline" id="cancel-register">Zrušit</button>
+                    <button type="submit" class="button button-primary">Zaregistrovat se</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODÁL – úprava ingrediencí -->
+    <div class="modal-overlay" id="ingredients-modal">
+        <div class="modal-window ingredients-window">
+            <div class="modal-title-row">
+                <h2>Upravit ingredience</h2>
+                <button class="modal-close-button" id="close-ingredients-modal">&times;</button>
+            </div>
+
+            <p class="modal-description">
+                Upravte seznam ingrediencí, které máte doma. Každá položka by měla být na samostatném řádku.
+            </p>
+
+            <div class="modal-form-group">
+                <label for="ingredients-modal-text">Ingredience</label>
+                <textarea id="ingredients-modal-text" class="profile-textarea"></textarea>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="button button-outline" id="cancel-ingredients">Zrušit</button>
+                <button type="button" class="button button-primary" id="save-ingredients">Uložit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIKA NÁKUPNÍHO SEZNAMU (mock data) -->
+    <script>
+        // Mockovaná data jídelních plánů
+        const mockPlans = {
+            plan1: {
+                name: "Plán 1 – Základní redukce",
+                requiredIngredients: [
+                    "kuřecí prsa",
+                    "rýže",
+                    "brokolice",
+                    "jogurt",
+                    "ovesné vločky",
+                    "banán"
+                ],
+                defaultPantry: ["kuřecí prsa", "rýže", "jogurt"]
+            },
+            plan2: {
+                name: "Plán 2 – Aktivní život",
+                requiredIngredients: [
+                    "hovězí maso",
+                    "batáty",
+                    "těstoviny",
+                    "vejce",
+                    "tvaroh",
+                    "banán"
+                ],
+                defaultPantry: ["tvaroh", "banán"]
+            },
+            plan3: {
+                name: "Plán 3 – Vegetariánský",
+                requiredIngredients: [
+                    "tofu",
+                    "cizrna",
+                    "quinoa",
+                    "rajčata",
+                    "špenát",
+                    "jogurt"
+                ],
+                defaultPantry: ["rajčata", "špenát"]
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const planSelect = document.getElementById("plan-select");
+            const pantryChecklist = document.getElementById("pantry-checklist");
+            const shoppingChecklist = document.getElementById("shopping-checklist");
+
+            const editBtn = document.getElementById("edit-ingredients");
+            const ingredientsModal = document.getElementById("ingredients-modal");
+            const modalText = document.getElementById("ingredients-modal-text");
+            const saveBtn = document.getElementById("save-ingredients");
+            const cancelBtn = document.getElementById("cancel-ingredients");
+            const closeModalBtn = document.getElementById("close-ingredients-modal");
+
+            let pantryItems = []; // aktuální ingredience uživatele
+
+            function renderPantryChecklist() {
+                pantryChecklist.innerHTML = "";
+                if (pantryItems.length === 0) {
+                    pantryChecklist.textContent = "Zatím nemáte nic zapsáno.";
+                    return;
+                }
+
+                pantryItems.forEach(item => {
+                    const div = document.createElement("div");
+                    div.className = "shopping-checklist-item";
+
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.checked = true; // mám to doma
+
+                    const label = document.createElement("label");
+                    label.textContent = item.charAt(0).toUpperCase() + item.slice(1);
+
+                    div.appendChild(checkbox);
+                    div.appendChild(label);
+                    pantryChecklist.appendChild(div);
+                });
+            }
+
+            function renderShoppingChecklist() {
+                const planKey = planSelect.value;
+                const plan = mockPlans[planKey];
+                if (!plan) return;
+
+                const required = plan.requiredIngredients;
+                const toBuy = required.filter(
+                    item => !pantryItems.includes(item.toLowerCase())
+                );
+
+                shoppingChecklist.innerHTML = "";
+
+                if (toBuy.length === 0) {
+                    shoppingChecklist.textContent = "Nemusíte nic dokupovat – máte vše potřebné.";
+                    return;
+                }
+
+                toBuy.forEach(item => {
+                    const div = document.createElement("div");
+                    div.className = "shopping-checklist-item";
+
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+
+                    const label = document.createElement("label");
+                    label.textContent = item.charAt(0).toUpperCase() + item.slice(1);
+
+                    div.appendChild(checkbox);
+                    div.appendChild(label);
+                    shoppingChecklist.appendChild(div);
+                });
+            }
+
+            function loadPlanDefaults() {
+                const planKey = planSelect.value;
+                const plan = mockPlans[planKey];
+                if (!plan) return;
+
+                pantryItems = plan.defaultPantry.map(i => i.toLowerCase());
+                renderPantryChecklist();
+                renderShoppingChecklist();
+            }
+
+            // změna plánu → načti default ingredience
+            planSelect.addEventListener("change", loadPlanDefaults);
+
+            // otevření modálu
+            editBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                modalText.value = pantryItems
+                    .map(item => item.charAt(0).toUpperCase() + item.slice(1))
+                    .join("\n");
+                ingredientsModal.classList.add("active");
+            });
+
+            // zavření modálu
+            function closeIngredientsModal() {
+                ingredientsModal.classList.remove("active");
+            }
+
+            cancelBtn.addEventListener("click", closeIngredientsModal);
+            closeModalBtn.addEventListener("click", closeIngredientsModal);
+            ingredientsModal.addEventListener("click", function (e) {
+                if (e.target === ingredientsModal) {
+                    closeIngredientsModal();
+                }
+            });
+
+            // uložení změn z modálu
+            saveBtn.addEventListener("click", function () {
+                pantryItems = modalText.value
+                    .split("\n")
+                    .map(line => line.trim())
+                    .filter(line => line.length > 0)
+                    .map(line => line.toLowerCase());
+
+                closeIngredientsModal();
+                renderPantryChecklist();
+                renderShoppingChecklist();
+            });
+
+            // inicializace – první plán
+            loadPlanDefaults();
+        });
+    </script>
+
+    <!-- společný JS pro login/registr modály -->
+    <script src="modals.js"></script>
+
+</body>
+</html>

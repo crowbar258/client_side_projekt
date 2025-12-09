@@ -1,0 +1,708 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Můj plán – MealPrep</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <!-- HLAVIČKA -->
+    <header>
+        <div class="page-container">
+            <nav class="navbar">
+                <a href="index1.html" class="navbar-brand">MealPrep</a>
+
+                <div class="navbar-links">
+                    <a href="index1.html">Domů</a>
+                    <a href="plany.html">Plány</a>
+                    <a href="recepty.html">Recepty</a>
+                    <a href="kontakt.html">Kontakt</a>
+                    <a href="muj-profil.html">Můj profil</a>
+                    <a href="index2.html">Verze B</a>
+                </div>
+
+                <div class="navbar-actions">
+                    <!-- viditelné jen pro přihlášené (ukáže JS) -->
+                    <a href="moje-recepty.html"
+                       id="nav-my-recipes"
+                       class="button button-outline"
+                       style="display:none;">
+                        Moje recepty
+                    </a>
+
+                    <a href="muj-plan.html"
+                       id="nav-my-plan"
+                       class="button button-outline"
+                       style="display:none;">
+                        Můj plán
+                    </a>
+
+                    <!-- přihlášení/registrace pro nepřihlášené -->
+                    <button class="button button-outline" id="open-register-modal">Registrace</button>
+                    <button class="button button-primary" id="open-login-modal">Přihlášení</button>
+
+                    <!-- odhlášení pro přihlášené -->
+                    <button class="button button-outline"
+                            id="logout-button"
+                            style="display:none;">
+                        Odhlásit se
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- OBSAH -->
+    <main class="main-content">
+        <div class="page-container">
+            <section class="section-block">
+
+                <!-- název + tlačítko vpravo -->
+                <div class="section-header-row">
+                    <h1>Můj plán: Plán 1</h1>
+                    <a href="tvorba-planu.html" class="button button-outline">
+                        Vytvořit plán
+                    </a>
+                </div>
+
+                <!-- WRAPPER PRO ZÁLOŽKY + OBSAH -->
+                <div class="plan-tabs-wrapper">
+                    <!-- radio buttony (schované), každá záložka = jedna volba -->
+                    <input type="radio" name="meal-tab" id="tab-snidane" checked>
+                    <input type="radio" name="meal-tab" id="tab-svacina1">
+                    <input type="radio" name="meal-tab" id="tab-obed">
+                    <input type="radio" name="meal-tab" id="tab-svacina2">
+                    <input type="radio" name="meal-tab" id="tab-vecere">
+
+                    <!-- záložky (klikací labely) -->
+                    <div class="plan-tabs">
+                        <label for="tab-snidane" class="plan-tab">Snídaně</label>
+                        <label for="tab-svacina1" class="plan-tab">Svačina 1</label>
+                        <label for="tab-obed" class="plan-tab">Oběd</label>
+                        <label for="tab-svacina2" class="plan-tab">Svačina 2</label>
+                        <label for="tab-vecere" class="plan-tab">Večeře</label>
+                    </div>
+
+                    <hr class="plan-divider">
+
+                    <!-- OBSAH JEDNOTLIVÝCH ZÁLOŽEK -->
+                    <div class="plan-contents">
+
+                        <!-- SNÍDANĚ -->
+                        <div class="plan-content content-snidane">
+                            <div class="plan-top-layout">
+                                <div class="plan-left">
+                                    <h2 class="plan-meal-title">
+                                        Snídaně: Proteinový jogurt s ořechy
+                                    </h2>
+                                    <p class="recipe-summary-intro">
+                                        Velmi rychlá a jednoduchá snídaně, ideální pro doplnění
+                                        bílkovin. Vychází z receptu v detailu receptu.
+                                    </p>
+
+                                    <div class="plan-main-box">
+                                        <div class="plan-image-box">
+                                            <div class="mp-image-box">
+                                                <img src="recept4.webp" alt="Proteinový jogurt" class="mp-image">
+                                            </div>
+                                        </div>
+
+                                        <div class="plan-stats">
+                                            <div class="info-item-small-box">
+                                                <span class="label">Komplexita</span>
+                                                <span class="value">Nízká</span>
+                                            </div>
+                                            <div class="info-item-small-box">
+                                                <span class="label">Doba přípravy</span>
+                                                <span class="value">5 minut</span>
+                                            </div>
+                                            <div class="info-item-small-box">
+                                                <span class="label">Počet porcí</span>
+                                                <span class="value">1 osoba</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- kalendář je společný pro všechny záložky -->
+                                <aside class="plan-calendar-card">
+                                    <div class="plan-calendar-header">
+                                        <span><i class="far fa-calendar"></i> Duben 2024</span>
+                                    </div>
+                                    <table class="plan-calendar">
+                                        <thead>
+                                            <tr>
+                                                <th>Po</th>
+                                                <th>Út</th>
+                                                <th>St</th>
+                                                <th>Čt</th>
+                                                <th>Pá</th>
+                                                <th>So</th>
+                                                <th>Ne</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>3</td>
+                                                <td>4</td>
+                                                <td>5</td>
+                                                <td>6</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td>8</td>
+                                                <td class="today">9</td>
+                                                <td>10</td>
+                                                <td>11</td>
+                                                <td>12</td>
+                                                <td>13</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>15</td>
+                                                <td>16</td>
+                                                <td>17</td>
+                                                <td>18</td>
+                                                <td>19</td>
+                                                <td>20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>21</td>
+                                                <td>22</td>
+                                                <td>23</td>
+                                                <td>24</td>
+                                                <td>25</td>
+                                                <td>26</td>
+                                                <td>27</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </aside>
+                            </div>
+
+                            <!-- INGREDIENCE + POSTUP -->
+                            <section class="plan-bottom">
+                                <div class="recipe-content-layout">
+                                    <div class="recipe-ingredients-block">
+                                        <h2><i class="fas fa-shopping-basket"></i> Ingredience</h2>
+                                        <ul>
+                                            <li>150 g řeckého jogurtu</li>
+                                            <li>50 g borůvek</li>
+                                            <li>20 g vlašských ořechů</li>
+                                            <li>10 g medu nebo javorového sirupu</li>
+                                            <li>Špetka skořice</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="recipe-instructions-block">
+                                        <h2><i class="fas fa-list-ol"></i> Postup</h2>
+                                        <ol>
+                                            <li>Jogurt dejte do misky.</li>
+                                            <li>Přidejte ovoce a nasekané ořechy.</li>
+                                            <li>Dochutťe medem a skořicí.</li>
+                                            <li>Ihned podávejte.</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- SVAČINA 1 -->
+                        <div class="plan-content content-svacina1">
+                            <div class="plan-top-layout">
+                                <div class="plan-left">
+                                    <h2 class="plan-meal-title">
+                                        Svačina 1: Ovoce s ořechy
+                                    </h2>
+                                    <p class="recipe-summary-intro">
+                                        Jednoduchá dopolední svačina – kombinace ovoce a zdravých tuků
+                                        z ořechů, ideální mezi snídaní a obědem.
+                                    </p>
+
+                                    <div class="plan-main-box">
+                                        <div class="plan-image-box">
+                                            <div class="mp-image-box">
+                                                <img src="recept5.png" alt="Proteinový jogurt" class="mp-image">
+                                            </div>
+                                        </div>
+
+                                        <div class="plan-stats">
+                                            <div class="info-item-small-box">
+                                                <span class="label">Komplexita</span>
+                                                <span class="value">Velmi nízká</span>
+                                            </div>
+                                            <div class="info-item-small-box">
+                                                <span class="label">Doba přípravy</span>
+                                                <span class="value">3 minuty</span>
+                                            </div>
+                                            <div class="info-item-small-box">
+                                                <span class="label">Počet porcí</span>
+                                                <span class="value">1 osoba</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <aside class="plan-calendar-card">
+                                    <div class="plan-calendar-header">
+                                        <span><i class="far fa-calendar"></i> Duben 2024</span>
+                                    </div>
+                                    <table class="plan-calendar">
+                                        <thead>
+                                            <tr>
+                                                <th>Po</th>
+                                                <th>Út</th>
+                                                <th>St</th>
+                                                <th>Čt</th>
+                                                <th>Pá</th>
+                                                <th>So</th>
+                                                <th>Ne</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>3</td>
+                                                <td>4</td>
+                                                <td>5</td>
+                                                <td>6</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td>8</td>
+                                                <td class="today">9</td>
+                                                <td>10</td>
+                                                <td>11</td>
+                                                <td>12</td>
+                                                <td>13</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>15</td>
+                                                <td>16</td>
+                                                <td>17</td>
+                                                <td>18</td>
+                                                <td>19</td>
+                                                <td>20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>21</td>
+                                                <td>22</td>
+                                                <td>23</td>
+                                                <td>24</td>
+                                                <td>25</td>
+                                                <td>26</td>
+                                                <td>27</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </aside>
+                            </div>
+
+                            <section class="plan-bottom">
+                                <div class="recipe-content-layout">
+                                    <div class="recipe-ingredients-block">
+                                        <h2><i class="fas fa-shopping-basket"></i> Ingredience</h2>
+                                        <ul>
+                                            <li>1 jablko nebo hruška</li>
+                                            <li>Hrst ořechů (mandle, vlašské, lískové)</li>
+                                            <li>Citronová šťáva (volitelně)</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="recipe-instructions-block">
+                                        <h2><i class="fas fa-list-ol"></i> Postup</h2>
+                                        <ol>
+                                            <li>Ovoce omyjte a nakrájejte na menší kousky.</li>
+                                            <li>Ořechy můžete lehce nasekat.</li>
+                                            <li>Vše dejte do misky a případně zakápněte citronem.</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- OBĚD -->
+                        <div class="plan-content content-obed">
+                            <div class="plan-top-layout">
+                                <div class="plan-left">
+                                    <h2 class="plan-meal-title">
+                                        Oběd: Kuřecí salát s quinoou
+                                    </h2>
+                                    <p class="recipe-summary-intro">
+                                        Lehké, ale syté jídlo s dostatkem bílkovin a vlákniny.
+                                        Hodí se i jako jídlo do krabičky.
+                                    </p>
+
+                                    <div class="plan-main-box">
+                                        <div class="plan-image-box">
+                                            <div class="mp-image-box">
+                                                <img src="recept7.webp" alt="Proteinový jogurt" class="mp-image">
+                                            </div>
+                                        </div>
+
+                                        <div class="plan-stats">
+                                            <div class="info-item-small-box">
+                                                <span class="label">Komplexita</span>
+                                                <span class="value">Střední</span>
+                                            </div>
+                                            <div class="info-item-small-box">
+                                                <span class="label">Doba přípravy</span>
+                                                <span class="value">25 minut</span>
+                                            </div>
+                                            <div class="info-item-small-box">
+                                                <span class="label">Počet porcí</span>
+                                                <span class="value">2 osoby</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <aside class="plan-calendar-card">
+                                    <div class="plan-calendar-header">
+                                        <span><i class="far fa-calendar"></i> Duben 2024</span>
+                                    </div>
+                                    <table class="plan-calendar">
+                                        <thead>
+                                            <tr>
+                                                <th>Po</th>
+                                                <th>Út</th>
+                                                <th>St</th>
+                                                <th>Čt</th>
+                                                <th>Pá</th>
+                                                <th>So</th>
+                                                <th>Ne</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>3</td>
+                                                <td>4</td>
+                                                <td>5</td>
+                                                <td>6</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td>8</td>
+                                                <td class="today">9</td>
+                                                <td>10</td>
+                                                <td>11</td>
+                                                <td>12</td>
+                                                <td>13</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>15</td>
+                                                <td>16</td>
+                                                <td>17</td>
+                                                <td>18</td>
+                                                <td>19</td>
+                                                <td>20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>21</td>
+                                                <td>22</td>
+                                                <td>23</td>
+                                                <td>24</td>
+                                                <td>25</td>
+                                                <td>26</td>
+                                                <td>27</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </aside>
+                            </div>
+
+                            <section class="plan-bottom">
+                                <div class="recipe-content-layout">
+                                    <div class="recipe-ingredients-block">
+                                        <h2><i class="fas fa-shopping-basket"></i> Ingredience</h2>
+                                        <ul>
+                                            <li>120 g kuřecího masa</li>
+                                            <li>60 g quinoy</li>
+                                            <li>Listový salát, rajče, okurka</li>
+                                            <li>Olivový olej, sůl, pepř</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="recipe-instructions-block">
+                                        <h2><i class="fas fa-list-ol"></i> Postup</h2>
+                                        <ol>
+                                            <li>Uvařte quinou podle návodu.</li>
+                                            <li>Kuřecí maso osolte, opepřete a opečte na pánvi.</li>
+                                            <li>Nakrájejte zeleninu a smíchejte se sýtem a quinoou.</li>
+                                            <li>Přidejte nakrájené maso a zakápněte olejem.</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- SVAČINA 2 -->
+                        <div class="plan-content content-svacina2">
+                            <div class="plan-top-layout">
+                                <div class="plan-left">
+                                    <h2 class="plan-meal-title">
+                                        Svačina 2: Tvaroh s medem
+                                    </h2>
+                                    <p class="recipe-summary-intro">
+                                        Jednoduchá bílkovinná svačina vhodná odpoledne nebo po tréninku.
+                                    </p>
+
+                                    <div class="plan-main-box">
+                                        <div class="plan-image-box">
+                                            <div class="mp-image-box">
+                                                <img src="recept6.webp" alt="Proteinový jogurt" class="mp-image">
+                                            </div>
+                                        </div>
+
+                                        <div class="plan-stats">
+                                            <div class="info-item-small-box">
+                                                <span class="label">Komplexita</span>
+                                                <span class="value">Nízká</span>
+                                            </div>
+                                            <div class="info-item-small-box">
+                                                <span class="label">Doba přípravy</span>
+                                                <span class="value">5 minut</span>
+                                            </div>
+                                            <div class="info-item-small-box">
+                                                <span class="label">Počet porcí</span>
+                                                <span class="value">1 osoba</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <aside class="plan-calendar-card">
+                                    <div class="plan-calendar-header">
+                                        <span><i class="far fa-calendar"></i> Duben 2024</span>
+                                    </div>
+                                    <table class="plan-calendar">
+                                        <thead>
+                                            <tr>
+                                                <th>Po</th>
+                                                <th>Út</th>
+                                                <th>St</th>
+                                                <th>Čt</th>
+                                                <th>Pá</th>
+                                                <th>So</th>
+                                                <th>Ne</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>3</td>
+                                                <td>4</td>
+                                                <td>5</td>
+                                                <td>6</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td>8</td>
+                                                <td class="today">9</td>
+                                                <td>10</td>
+                                                <td>11</td>
+                                                <td>12</td>
+                                                <td>13</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>15</td>
+                                                <td>16</td>
+                                                <td>17</td>
+                                                <td>18</td>
+                                                <td>19</td>
+                                                <td>20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>21</td>
+                                                <td>22</td>
+                                                <td>23</td>
+                                                <td>24</td>
+                                                <td>25</td>
+                                                <td>26</td>
+                                                <td>27</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </aside>
+                            </div>
+
+                            <section class="plan-bottom">
+                                <div class="recipe-content-layout">
+                                    <div class="recipe-ingredients-block">
+                                        <h2><i class="fas fa-shopping-basket"></i> Ingredience</h2>
+                                        <ul>
+                                            <li>150 g polotučného tvarohu</li>
+                                            <li>1 lžíce medu</li>
+                                            <li>Hrst ovoce (např. borůvky)</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="recipe-instructions-block">
+                                        <h2><i class="fas fa-list-ol"></i> Postup</h2>
+                                        <ol>
+                                            <li>Tvaroh rozmíchejte s medem.</li>
+                                            <li>Přidejte ovoce navrch.</li>
+                                            <li>Podávejte vychlazené.</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- VEČEŘE -->
+                        <div class="plan-content content-vecere">
+                            <div class="plan-top-layout">
+                                <div class="plan-left">
+                                    <h2 class="plan-meal-title">
+                                        Večeře: Pečené tofu se zeleninou
+                                    </h2>
+                                    <p class="recipe-summary-intro">
+                                        Lehčí večeře bohatá na bílkoviny, skvělá pro vegetariány i ty,
+                                        kdo chtějí omezit maso.
+                                    </p>
+
+                                    <div class="plan-main-box">
+                                        <div class="plan-image-box">
+                                            <div class="mp-image-box">
+                                                <span class="mp-image-placeholder">
+                                                    Obrázek večeře
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="plan-stats">
+                                            <div class="info-item-small-box">
+                                                <span class="label">Komplexita</span>
+                                                <span class="value">Střední</span>
+                                            </div>
+                                            <div class="info-item-small-box">
+                                                <span class="label">Doba přípravy</span>
+                                                <span class="value">30 minut</span>
+                                            </div>
+                                            <div class="info-item-small-box">
+                                                <span class="label">Počet porcí</span>
+                                                <span class="value">2 osoby</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <aside class="plan-calendar-card">
+                                    <div class="plan-calendar-header">
+                                        <span><i class="far fa-calendar"></i> Duben 2024</span>
+                                    </div>
+                                    <table class="plan-calendar">
+                                        <thead>
+                                            <tr>
+                                                <th>Po</th>
+                                                <th>Út</th>
+                                                <th>St</th>
+                                                <th>Čt</th>
+                                                <th>Pá</th>
+                                                <th>So</th>
+                                                <th>Ne</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>3</td>
+                                                <td>4</td>
+                                                <td>5</td>
+                                                <td>6</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td>8</td>
+                                                <td class="today">9</td>
+                                                <td>10</td>
+                                                <td>11</td>
+                                                <td>12</td>
+                                                <td>13</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>15</td>
+                                                <td>16</td>
+                                                <td>17</td>
+                                                <td>18</td>
+                                                <td>19</td>
+                                                <td>20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>21</td>
+                                                <td>22</td>
+                                                <td>23</td>
+                                                <td>24</td>
+                                                <td>25</td>
+                                                <td>26</td>
+                                                <td>27</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </aside>
+                            </div>
+
+                            <section class="plan-bottom">
+                                <div class="recipe-content-layout">
+                                    <div class="recipe-ingredients-block">
+                                        <h2><i class="fas fa-shopping-basket"></i> Ingredience</h2>
+                                        <ul>
+                                            <li>200 g tofu</li>
+                                            <li>Směs zeleniny (brokolice, paprika, cuketa)</li>
+                                            <li>1 lžíce olivového oleje</li>
+                                            <li>Sůl, pepř, bylinky</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="recipe-instructions-block">
+                                        <h2><i class="fas fa-list-ol"></i> Postup</h2>
+                                        <ol>
+                                            <li>Tofu nakrájejte na kostky a dochuťte kořením.</li>
+                                            <li>Zeleninu nakrájejte na menší kousky.</li>
+                                            <li>Vše dejte na plech, zakápněte olejem a pečte cca 20 minut.</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                    </div> <!-- /plan-contents -->
+                </div> <!-- /plan-tabs-wrapper -->
+            </section>
+        </div>
+    </main>
+
+    <!-- PATIČKA -->
+    <footer class="site-footer">
+        <div class="page-container footer-content">
+            <div>Studentský projekt – MealPrep</div>
+            <div class="footer-links">
+                <a href="index1.html">Domů</a>
+                <a href="kontakt.html">Kontakt</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="modals.js"></script>
+</body>
+</html>

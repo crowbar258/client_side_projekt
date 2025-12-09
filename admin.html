@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin – MealPrep</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+     <header>
+        <div class="page-container">
+            <nav class="navbar">
+                <a href="index1.html" class="navbar-brand">MealPrep</a>
+
+                <div class="navbar-links">
+                    <a href="index1.html">Domů</a>
+                    <a href="plany.html">Plány</a>
+                    <a href="recepty.html">Recepty</a>
+                    <a href="kontakt.html">Kontakt</a>
+                    <a href="muj-profil.html">Můj profil</a>
+                    <a href="admin.html" class="active-link">Admin</a>
+                    <a href="index2.html">Verze B</a>
+                </div>
+
+                <div class="navbar-actions">
+                    <button class="button button-outline" id="logout-button">Odhlásit se</button>
+                </div>
+
+            </nav>
+        </div>
+    </header>
+
+<main class="main-content">
+        <section class="section-block">
+            <div class="page-container">
+
+                <div class="admin-header-search">
+                    <h1>Admin stránka</h1>
+                    <div class="search-bar-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" placeholder="Vyhledat uživatele" class="search-input">
+                    </div>
+                </div>
+                
+                <div id="content-users" class="tab-content active" style="display: block; padding-top: 0;">
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Přezdívka</th>
+                                <th>E-mail</th>
+                                <th>Akce</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>admin_master</td>
+                                <td>admin@mealprep.cz</td>
+                                <td>
+                                    <button class="button button-small button-danger">Odstranit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>uzivatel_jana</td>
+                                <td>jana.novakova@seznam.cz</td>
+                                <td>
+                                    <button class="button button-small button-danger">Odstranit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>petr_v_</td>
+                                <td>petr.v@gmail.com</td>
+                                <td>
+                                    <button class="button button-small button-danger">Odstranit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>karelv_</td>
+                                <td>karel.v@gmail.com</td>
+                                <td>
+                                    <button class="button button-small button-danger">Odstranit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>josef</td>
+                                <td>josef.v@gmail.com</td>
+                                <td>
+                                    <button class="button button-small button-danger">Odstranit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>vlastik_</td>
+                                <td>vlasta.v@gmail.com</td>
+                                <td>
+                                    <button class="button button-small button-danger">Odstranit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>synek_</td>
+                                <td>synek.v@gmail.com</td>
+                                <td>
+                                    <button class="button button-small button-danger">Odstranit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>pele_</td>
+                                <td>pele.v@gmail.com</td>
+                                <td>
+                                    <button class="button button-small button-danger">Odstranit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>cr7_</td>
+                                <td>cr7.v@gmail.com</td>
+                                <td>
+                                    <button class="button button-small button-danger">Odstranit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>rm7_</td>
+                                <td>rm7.v@gmail.com</td>
+                                <td>
+                                    <button class="button button-small button-danger">Odstranit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="plans-pagination">
+                    <button class="pagination-button">&lt;</button>
+                    <button class="pagination-button active-page">1</button>
+                    <button class="pagination-button">2</button>
+                    <button class="pagination-button">3</button>
+                    <button class="pagination-button">4</button>
+                    <button class="pagination-button">5</button>
+                    <button class="pagination-button">&gt;</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="page-container footer-content">
+            <div>Studentský projekt – MealPrep</div>
+            <div class="footer-links">
+                <a href="index1.html">Domů</a>
+                <a href="kontakt.html">Kontakt</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="modals.js"></script> 
+    </body>
+</html>
