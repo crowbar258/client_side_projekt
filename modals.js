@@ -1,5 +1,4 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
-
     // ---- HTML ELEMENTY ----
     const loginModal = document.getElementById("login-modal");
     const registerModal = document.getElementById("register-modal");
@@ -8,9 +7,17 @@
     const registerBtn = document.getElementById("open-register-modal");
     const logoutBtn = document.getElementById("logout-button");
 
-    // nové odkazy v navigaci
+    // odkazy v navigaci
     const myPlanLink = document.getElementById("nav-my-plan");
     const myRecipesLink = document.getElementById("nav-my-recipes");
+
+    // odkaz na stránku Můj profil v navigaci
+    const profileLink = document.querySelector('a[href="muj-profil.html"]');
+
+    // tlačítka „Přidat plán“ – buď s vlastní class, nebo konkrétní na stránce jídelníčku
+    const addPlanButtons = document.querySelectorAll(
+        ".add-to-plan-btn, .recipe-intro-text .button.button-primary"
+    );
 
     const loginForm = document.getElementById("login-form");
     const registerForm = document.getElementById("register-form");
@@ -25,12 +32,26 @@
         document.getElementById("cancel-register")
     ].filter(Boolean);
 
-    // zjištění, jestli jsme na admin stránce
-    const isAdminPage = window.location.pathname.includes("admin.html");
+    // ---- INFO O STRÁNCE ----
+    const path = window.location.pathname.toLowerCase();
 
+    const isAdminPage =
+        path.includes("admin.html") || path.endsWith("/admin");
 
-    // ---- SPRÁVA LOGIN STAVU (mimo admin) ----
-    const AUTH_KEY = "mealprep_logged_in";  // true/false
+    const isMyPlanPage =
+        path.includes("muj-plan.html") || path.includes("muj-plan");
+
+    const isMyRecipesPage =
+        path.includes("moje-recepty.html") || path.includes("moje-recepty");
+
+    const isRecipeDetailPage =
+        path.includes("recept_detail.html") || path.includes("recept_detail");
+
+    const isCreateRecipePage =
+        path.includes("tvorba-receptu.html") || path.includes("tvorba-receptu");
+
+    // ---- SPRÁVA LOGIN STAVU ----
+    const AUTH_KEY = "mealprep_logged_in"; // true/false v localStorage
 
     function isLoggedIn() {
         return localStorage.getItem(AUTH_KEY) === "true";
@@ -42,42 +63,43 @@
     }
 
     function updateNavbar() {
-        // ⭐ ADMIN STRÁNKA – tlačítko Odhlásit se je vždy vidět
+        // ADMIN STRÁNKA – tlačítko Odhlásit se je vždy vidět, ostatní věci schovat
         if (isAdminPage) {
             if (logoutBtn) logoutBtn.style.display = "inline-flex";
 
-            // na admin stránce login/registrace / moje recepty / můj plán neukazujeme
             if (loginBtn) loginBtn.style.display = "none";
             if (registerBtn) registerBtn.style.display = "none";
             if (myPlanLink) myPlanLink.style.display = "none";
             if (myRecipesLink) myRecipesLink.style.display = "none";
+            if (profileLink) profileLink.style.display = "none";
 
             return;
         }
 
-        // ⭐ OSTATNÍ STRÁNKY
+        // OSTATNÍ STRÁNKY
         if (isLoggedIn()) {
-            // Přihlášený → ukázat Odhlásit se + Moje recepty + Můj plán
+            // Přihlášený → ukázat Odhlásit se + Moje recepty + Můj plán + Můj profil
             if (logoutBtn) logoutBtn.style.display = "inline-flex";
             if (loginBtn) loginBtn.style.display = "none";
             if (registerBtn) registerBtn.style.display = "none";
 
             if (myPlanLink) myPlanLink.style.display = "inline-flex";
             if (myRecipesLink) myRecipesLink.style.display = "inline-flex";
+            if (profileLink) profileLink.style.display = "inline-flex";
         } else {
-            // Nepřihlášený → Přihlšení + Registrace, schovat „Moje recepty / Můj plán“
+            // Nepřihlášený → Přihlášení + Registrace, schovat „Moje recepty / Můj plán / Můj profil“
             if (logoutBtn) logoutBtn.style.display = "none";
             if (loginBtn) loginBtn.style.display = "inline-flex";
             if (registerBtn) registerBtn.style.display = "inline-flex";
 
             if (myPlanLink) myPlanLink.style.display = "none";
             if (myRecipesLink) myRecipesLink.style.display = "none";
+            if (profileLink) profileLink.style.display = "none";
         }
     }
 
     // Spustíme po načtení
     updateNavbar();
-
 
     // ---- OTEVÍRÁNÍ MODÁLŮ (na admin stránce stejně nejsou) ----
     if (loginBtn) {
@@ -91,7 +113,6 @@
             if (registerModal) registerModal.classList.add("active");
         });
     }
-
 
     // ---- ZAVÍRÁNÍ MODÁLŮ ----
     closeLoginBtns.forEach(btn => {
@@ -113,28 +134,18 @@
         });
     });
 
-
-    // ---- MOCK LOGIN (na adminu se nepoužije) ----
+    // ---- MOCK PŘIHLÁŠENÍ (na adminu se nepoužije) ----
     if (loginForm && !isAdminPage) {
         loginForm.addEventListener("submit", function (e) {
             e.preventDefault();
 
-            const email = document.getElementById("login-email").value.trim();
-            const pass = document.getElementById("login-password").value.trim();
-
-            if (!email || !pass) {
-                alert("Vyplňte prosím e-mail i heslo.");
-                return;
-            }
-
-            // PŘIHLÁŠENÍ (mock)
+            // tady by normálně byla validace, ale pro účely projektu stačí „mock“ login
             setLoggedIn(true);
-            alert("Úspěšně přihlášen (mock).");
+            alert("Přihlášení úspěšné (mock).");
 
             if (loginModal) loginModal.classList.remove("active");
         });
     }
-
 
     // ---- MOCK REGISTRACE (na adminu se nepoužije) ----
     if (registerForm && !isAdminPage) {
@@ -170,6 +181,12 @@
         });
     }
 
+    // ---- PŘIDÁNÍ PLÁNU Z DETAILU JÍDELNÍČKU ----
+    addPlanButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            window.location.href = "muj-plan.html";
+        });
+    });
 
     // ---- ODHLAŠENÍ ----
     if (logoutBtn) {
@@ -178,9 +195,15 @@
             setLoggedIn(false);
             alert("Byl(a) jste úspěšně odhlášen(a).");
 
-            // ⭐ na admin stránce navíc přesměrovat na index1.html
-            if (isAdminPage) {
-                window.location.href = "index1.html";
+            const shouldRedirectAfterLogout =
+                isAdminPage ||
+                isMyPlanPage ||
+                isMyRecipesPage ||
+                isRecipeDetailPage ||
+                isCreateRecipePage;
+
+            if (shouldRedirectAfterLogout) {
+                window.location.href = "index.html";
             }
         });
     }
